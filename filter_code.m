@@ -97,3 +97,14 @@ axis equal; grid on;
 xlabel('X [m]'); ylabel('Y [m]');
 title('Measured vs EKF-estimated trajectory');
 legend('Location','best');
+
+% Compute squared errors
+sq_err_x = (xhat(1,:) - xm').^2;
+sq_err_y = (xhat(2,:) - ym').^2;
+
+% Mean squared state error
+msse_x = mean(sq_err_x);
+msse_y = mean(sq_err_y);
+
+fprintf('MSSE X: %.6f m^2\n', msse_x);
+fprintf('MSSE Y: %.6f m^2\n', msse_y);
